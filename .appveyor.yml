@@ -1,7 +1,11 @@
 
-clone_folder: c:\projects\current
+clone_folder: "c:\\WORK"
+
+cache:
+ - "C:\\SR" 
 
 install:
+ - "if not exist C:\\SR mkdir C:\\SR"
  - "set PATH=C:\\Program Files\\Git\\mingw64\\bin;%PATH%"
  - "mkdir C:\\Haskell\\cabal\\bin"
  - "cd C:\\Haskell"
@@ -11,16 +15,15 @@ install:
  - appveyor DownloadFile "https://www.haskell.org/cabal/release/cabal-install-2.0.0.1/cabal-install-2.0.0.1-x86_64-unknown-mingw32.zip" -FileName cabal.zip
  - "7z x cabal.zip"
  - "set PATH=C:\\Haskell\\ghc-8.2.2\\bin;C:\\Haskell\\cabal\\bin;%PATH%"
- - "cd C:\\projects\\current"
+ - "cd C:\\WORK"
  - "ls -lrt"
  - "ghc --version"
  - "cabal --version"
  - "cabal --http-transport=plain-http update -v"
- - "mkdir C:\\SR"
 
 build: off
 
 test_script:
- - "cabal get uhttpc-0.1.1.0"
- - "cd uhttpc-0.1.1.0"
- - "cabal --http-transport=plain-http --store-dir=C:\\SR new-build -j1"
+ - "cabal get -s Cabal"
+ - 'echo packages: Cabal/Cabal, Cabal/cabal-install > cabal.project'
+ - "cabal --http-transport=plain-http --store-dir=C:\\SR new-build -j1 exe:cabal"
