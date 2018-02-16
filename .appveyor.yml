@@ -3,14 +3,13 @@ clone_folder: "c:\\WORK"
 
 environment:
   global:
-    GHCVER:   "8.2.2"
     CABOPTS:  "--store-dir=C:\\SR --http-transport=plain-http"
   matrix:
-    - ARCH: x86_64
-    - ARCH: i386
+    - GHCVER: "8.2.2"
+    - GHCVER: "8.0.2"
 
 cache:
- - "C:\\SR" 
+ - "C:\\SR"
 
 install:
  - "set PATH=C:\\Program Files\\Git\\mingw64\\bin;%PATH%"
