@@ -18,7 +18,7 @@ install:
  - "refreshenv"
  - "cabal --version"
  - "ghc   --version"
- - "cabal %CABOPTS update"
+ - "cabal %CABOPTS% update"
 
 build: off
 
